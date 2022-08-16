@@ -1,7 +1,0 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  creationTimestamp: null
-  name: fibo
-spec:
-  host: fibo.fibonacci-staging.svc.cluster.local
