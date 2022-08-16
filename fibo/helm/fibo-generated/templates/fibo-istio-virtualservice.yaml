@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  creationTimestamp: null
+  name: fibo
+spec:
+  gateways:
+  - public-gateway.istio-system
+  - mesh
+  hosts:
+  - fibo.fibonacci-staging.34.123.254.214.nip.io
+  - fibo
+  http:
+  - route:
+    - destination:
+        host: fibo.fibonacci-staging.svc.cluster.local
