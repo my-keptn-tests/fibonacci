@@ -9,4 +9,4 @@ actions:
           - /k6
         image: "loadimpact/k6"
         cmd: ["k6"]
-        args: ["run", "--duration", "30s", "--vus", "60", "/keptn/k6/calculate.js"]
+        args: ["run", "-e", "BASE_URL=fibo.fibonacci-staging.svc.cluster.local:80", "--duration", "30s", "--vus", "60", "/keptn/k6/calculate.js"]
