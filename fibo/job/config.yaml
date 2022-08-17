@@ -9,4 +9,4 @@ actions:
           - /k6
         image: "loadimpact/k6"
         cmd: ["k6"]
-        args: ["run", "BASE_URL", "http://localhost:30000", "--duration", "30s", "--vus", "60", "/keptn/k6/calculate.js"]
+        args: ["run", "--duration", "30s", "--vus", "60", "/keptn/k6/calculate.js"]
