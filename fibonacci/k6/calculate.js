@@ -4,6 +4,7 @@ import { sleep } from 'k6';
 export default () => {
   const BASE_URL = __ENV.BASE_URL || 'fibo.fibonacci-staging.svc.cluster.local:80';
   const res = http.get(`http://${BASE_URL}/calculate?num=40`);
+  sleep(1);
   if (
     !check(res, {
       'status code MUST be 200': (res) => res.status == 200,
@@ -11,5 +12,4 @@ export default () => {
   ) {
     fail('status code was *not* 200');
   }
-  sleep(1);
 };
