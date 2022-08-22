@@ -1,4 +1,4 @@
-image: ghcr.io/beeme1mr/ghcr.io/beeme1mr/fib3r-kubecon-demo:latest
+image: ghcr.io/beeme1mr/fib3r-kubecon-demo:latest
 keptn:
   deployment: user_managed
   project: fibonacci
