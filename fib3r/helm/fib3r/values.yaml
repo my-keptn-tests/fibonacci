@@ -1,6 +1,6 @@
-image: ghcr.io/beeme1mr/kubecon-demo:latest
+image: ghcr.io/beeme1mr/fib3r-kubecon-demo:latest
 replicaCount: 1
 keptn:
-  service: "fibo"
+  service: "fib3r"
   project: "fibonacci"
   deployment: "user_managed"
