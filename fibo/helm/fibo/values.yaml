@@ -1,6 +1,0 @@
-image: ghcr.io/beeme1mr/kubecon-demo:latest
-keptn:
-  deployment: direct
-  project: fibonacci
-  service: fibo
-replicaCount: 1
