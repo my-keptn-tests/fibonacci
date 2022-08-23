@@ -33,7 +33,7 @@ spec:
             - name: SERVICE_NAME
               value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
             - name: FIB3R_BASE_URL
-              value: "fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
+              value: "http://fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
             - name: "FIB3R_USER"
               value: "my-fib3r-user"
             - name: "FIB3R_PASS"
