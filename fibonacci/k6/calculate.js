@@ -11,5 +11,6 @@ export default () => {
     })
   ) {
     fail('status code was *not* 200');
+    exit(1);
   }
 };
