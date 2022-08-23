@@ -4,6 +4,8 @@ metadata:
   name: fibonacci
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: fibonacci
@@ -39,7 +41,7 @@ spec:
             - name: "FIB3R_USER"
               value: "my-fib3r-user"
             - name: "FIB3R_PASS"
-              value: "my-fib3r-pass"
+              value: "my-fib3r-password"
           resources:
             requests:
               cpu: 100m
