@@ -20,12 +20,20 @@ spec:
       containers:
         - name: fibonacci
           image: "{{ .Values.image }}"
+          args:
+            - flagd
           imagePullPolicy: "Always"
           ports:
             - containerPort: 30000
           env:
             - name: DT_CUSTOM_PROP
               value: "keptn_project={{ .Values.keptn.project }} keptn_service={{ .Values.keptn.service }} keptn_stage={{ .Values.keptn.stage }} keptn_deployment={{ .Values.keptn.deployment }}"
+            - name: OTEL_TRACE_HOST
+              value: "jaeger-collector.jaeger.svc.cluster.local:14268/api/traces"
+            - name: SERVICE_NAME
+              value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
+            - name: ENVIRONMENT
+              value: "{{ .Values.keptn.stage }}"
             - name: FIB3R_BASE_URL
               value: "fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
             - name: "FIB3R_USER"
