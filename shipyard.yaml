@@ -52,7 +52,7 @@ spec:
       - name: release
     - name: notify
       triggeredOn:
-      - event: production.delivery.finished
+      - event: staging.delivery.finished
 #        selector:
 #          match:
 #            evaluation.result: "fail"
