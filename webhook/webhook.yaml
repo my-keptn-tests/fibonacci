@@ -1,0 +1,16 @@
+apiVersion: webhookconfig.keptn.sh/v1beta1
+kind: WebhookConfig
+metadata:
+  name: webhook-configuration
+spec:
+  webhooks:
+    - type: sh.keptn.event.notify.triggered
+      requests:
+        - url: https://webhook.site/23c4b648-3c4e-4915-b2e4-f35306ad1296
+          payload: >-
+            { notification }
+          headers: []
+          method: POST
+      subscriptionID: e5841271-5539-4517-8882-965f253e8125
+      sendFinished: true
+      sendStarted: true
