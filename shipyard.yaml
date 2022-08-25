@@ -53,8 +53,8 @@ spec:
     - name: notify
       triggeredOn:
       - event: production.delivery.finished
-#        selector:
-#          match:
-#            evaluation.result: "fail"
+        selector:
+          match:
+            result: "fail"
       tasks:
       - name: notify
