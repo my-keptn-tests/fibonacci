@@ -16,10 +16,6 @@ spec:
       - name: deployment
         properties:
           deploymentstrategy: user_managed
-      - name: approval
-        properties:
-          pass: "manual"
-          warning: "manual"
       - name: test
         properties:
           teststrategy: performance
