@@ -21,21 +21,6 @@ spec:
       subscriptionID: 2c214186-3a7e-4333-a44d-fa581110ce54
       sendFinished: false
       sendStarted: true
-    - type: sh.keptn.event.notify.triggered
-      requests:
-        - url: "{{.env.secret_slackhook_key}}"
-          payload: >2-
-                payload={         "channel" : "{{.data.project}}--{{.data.service}}",        "username" : "keptn",         "blocks": [            {            "type" : "section",            "text" : {                "type": "mrkdwn",                "text" : "*Delivery failed*"            }            },            {            "type" : "section",            "text" : {                "type": "mrkdwn",                "text" : "*Project:* {{.data.project}}\n*Stage:* {{.data.stage}}\n*Service:* {{.data.service}}\n*Traces in Jaeger:* "            }            }        ]    }
-          headers: []
-          method: POST
-      envFrom:
-        - name: secret_slackhook_key
-          secretRef:
-            name: slack-hook
-            key: key
-      subscriptionID: e5841271-5539-4517-8882-965f253e8125
-      sendFinished: true
-      sendStarted: true
     - type: sh.keptn.event.release.finished
       requests:
         - url: https://hooks.slack.com/services/{{.env.secret_slacksecret_HOOK}}
