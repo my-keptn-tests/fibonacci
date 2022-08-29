@@ -8,7 +8,7 @@ jobs:
     name: Enable Feature
     runs-on: ubuntu-latest
     steps:
-    - name: my active task
+    - name: enable feature
       run: |
         echo "Received active webhook, displaying received data"
         echo "type = ${{ github.event.client_payload.type }}"
