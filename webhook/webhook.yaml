@@ -36,3 +36,18 @@ spec:
       subscriptionID: e5841271-5539-4517-8882-965f253e8125
       sendFinished: true
       sendStarted: true
+    - type: sh.keptn.event.release.finished
+      requests:
+        - url: "{{.env.secret_slackhook_key}}"
+          payload: >2-
+                payload={         "channel" : "{{.data.project}}--{{.data.service}}",        "username" : "keptn",         "blocks": [            {            "type" : "section",            "text" : {                "type": "mrkdwn",                "text" : "*Release finished*"            }            },            {            "type" : "section",            "text" : {                "type": "mrkdwn",                "text" : "*Project:* {{.data.project}}\n*Stage:* {{.data.stage}}\n*Service:* {{.data.service}}\n            }            }        ]    }
+          headers: []
+          method: POST
+      envFrom:
+        - name: secret_slackhook_key
+          secretRef:
+            name: slack-hook
+            key: key
+      subscriptionID: 843c65dc-38e1-4a02-b023-a49f394db0e8
+      sendFinished: false
+      sendStarted: false
