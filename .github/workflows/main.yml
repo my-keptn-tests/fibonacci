@@ -1,36 +1,38 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-# Controls when the workflow will run
+name: Enable Feature
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  repository_dispatch:
+    types: 
+      - active-task
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  test:
+    name: Enable Feature
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    - name: my active task
+      run: |
+        echo "Received active webhook, displaying received data"
+        echo "type = ${{ github.event.client_payload.type }}"
+        echo "shkeptncontext = ${{ github.event.client_payload.shkeptncontext }}"
+        echo "id = ${{ github.event.client_payload.id }}"
+    - name: send finished event
+      run: |
+        echo "Received active webhook, will send back Keptn finished event"
+        json=$(cat <<-END
+            {
+              "data": {
+                "project":"${{ github.event.client_payload.project }}",
+                "stage": "${{ github.event.client_payload.stage}}",
+                "service": "${{ github.event.client_payload.service}}",
+                "status": "succeeded",
+                "result": "pass"
+              },
+              "source": "github",
+              "specversion": "1.0",
+              "type": "sh.keptn.event.enable-feature.finished",
+              "shkeptncontext": "${{ github.event.client_payload.shkeptncontext }}",
+              "triggeredid": "${{ github.event.client_payload.id }}"
+            }
+        END
+        )
+        echo "json=$json"
+        curl -X POST "${{ secrets.KEPTN_API_URL }}/v1/event" -H "Content-Type: application/json" -H "accept: application/json" -H "x-token: ${{ secrets.KEPTN_API_TOKEN }}" -d "$json"
