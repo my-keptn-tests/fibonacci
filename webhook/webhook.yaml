@@ -40,7 +40,7 @@ spec:
       requests:
         - url: https://hooks.slack.com/services/{{.env.secret_slacksecret_HOOK}}
           payload: >-
-            {"text":"Delivery failed.","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Delivery failed. See traces in [Jaeger](http://localhost:8080/search)"}}]}
+            {"text":"Delivery failed.","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Delivery failed. See traces in [Jaeger](http://localhost:8080/search?lookback=1h&service=fibonacci-production&tags=%7B%22feature_flag.flag_key%22%3A%22use-remote-fib-service%22%7D)"}}]}
           headers: []
           method: POST
       envFrom:
