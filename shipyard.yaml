@@ -38,13 +38,13 @@ spec:
       triggeredOn:
       - event: staging.delivery.finished
       tasks:
+      - name: enable-feature
       - name: deployment
         properties:
           deploymentstrategy: user_managed
       - name: test
         properties:
           teststrategy: performance
-      - name: enable-feature
       #- name: evaluation
       #- name: approval
       #  properties:
