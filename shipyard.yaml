@@ -44,6 +44,7 @@ spec:
       - name: test
         properties:
           teststrategy: performance
+      - name: enable-feature
       #- name: evaluation
       #- name: approval
       #  properties:
