@@ -59,4 +59,7 @@ jobs:
             Links
               - [Test Results](https://google.com)
           labels: |
+            triggeredid:${{ github.event.client_payload.id }},
+            project:${{ github.event.client_payload.project }},
+            stage:${{ github.event.client_payload.stage }},
             service:${{ github.event.client_payload.service }}
