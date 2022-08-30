@@ -38,7 +38,6 @@ spec:
       triggeredOn:
       - event: staging.delivery.finished
       tasks:
-      - name: enable-feature
       - name: deployment
         properties:
           deploymentstrategy: user_managed
@@ -50,6 +49,7 @@ spec:
       #  properties:
       #    pass: automatic
       #    warning: automatic
+      - name: enable-feature
       - name: release
     - name: notify
       triggeredOn:
