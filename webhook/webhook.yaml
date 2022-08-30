@@ -34,3 +34,20 @@ spec:
       subscriptionID: e5841271-5539-4517-8882-965f253e8125
       sendFinished: true
       sendStarted: true
+    - type: sh.keptn.event.enable-feature.triggered
+      requests:
+        - url: https://api.github.com/repos/my-keptn-tests/fibonacci/dispatches
+          payload: >-
+            {"event_type":"enable-feature","client_payload":{"type":"{{.type}}","project":"{{.data.project}}","service":"{{.data.service}}","stage":"{{.data.stage}}","shkeptncontext":"{{.shkeptncontext}}","id":"{{.id}}","default_variant":"on","flag_key":"use-remote-fib-service"}}
+          headers:
+            - key: Authorization
+              value: token {{.env.secret_githubsecret_GITHUBTOKEN}}
+          method: POST
+      envFrom:
+        - name: secret_githubsecret_GITHUBTOKEN
+          secretRef:
+            name: github-secret
+            key: GITHUBTOKEN
+      subscriptionID: 2c214186-3a7e-4333-a44d-fa581110ce54
+      sendFinished: false
+      sendStarted: true
