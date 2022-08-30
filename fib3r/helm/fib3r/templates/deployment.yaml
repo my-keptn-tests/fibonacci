@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fib3r
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: fib3r
+  template:
+    metadata:
+      labels:
+        app: fib3r
+        app.kubernetes.io/name: {{ .Values.keptn.service }}
+        app.kubernetes.io/instance: "{{ .Values.keptn.service }}-{{ .Values.keptn.deployment }}"
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/part-of: keptn-{{ .Release.Namespace }}
+        app.kubernetes.io/version: {{ (split ":" .Values.image)._1 | default "latest" }}
+    spec:
+      containers:
+        - name: fib3r
+          image: "{{ .Values.image }}"
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 30001
+          env:
+            - name: DT_CUSTOM_PROP
+              value: "keptn_project={{ .Values.keptn.project }} keptn_service={{ .Values.keptn.service }} keptn_stage={{ .Values.keptn.stage }} keptn_deployment={{ .Values.keptn.deployment }}"
+            - name: OTEL_TRACE_HOST
+              value: "jaeger-collector.jaeger.svc.cluster.local"
+            - name: SERVICE_NAME
+              value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
+            - name: ENVIRONMENT
+              value: "{{ .Values.keptn.stage }}"
+            - name: "FIB3R_USER"
+              value: "my-fib3r-user"
+            - name: "FIB3R_PASS"
+              value: "my-fib3r-password"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+        - name: flagd
+          image: ghcr.io/open-feature/flagd:latest
+          args: ["start", "--uri", "/etc/flagd/config.json"]
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/flagd
+      volumes:
+        - name: config-volume
+          configMap:
+            name: feature-flags
+
+
+
