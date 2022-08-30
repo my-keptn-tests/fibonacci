@@ -58,3 +58,5 @@ jobs:
             Tests ran and everything looks great!
             Links
               - [Test Results](https://google.com)
+          labels: |
+            service:${{ github.event.client_payload.service }}
