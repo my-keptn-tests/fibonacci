@@ -2,7 +2,7 @@ name: Enable Feature
 on:
   repository_dispatch:
     types:
-      - active-task
+      - enable-feature
 
 # Payload expected
 # - flag_key
