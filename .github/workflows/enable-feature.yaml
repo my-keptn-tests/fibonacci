@@ -48,6 +48,7 @@ jobs:
           propertyPath: 'data["config.json"]'
           value: ${{ steps.enable-feature.outputs.value }}
           branch: enable-feature/${{ github.event.client_payload.flag_key }}
+          masterBranchName: ${{ github.event.client_payload.stage }}
           targetBranch: ${{ github.event.client_payload.stage }}
           createPR: true
           message: "Update ${{ github.event.client_payload.flag_key }} default variant to '${{ github.event.client_payload.default_variant }}'"
