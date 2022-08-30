@@ -19,7 +19,7 @@ module.exports = ({ context }) => {
     specversion: "1.0",
     // TODO see what the event name is
     type: "sh.keptn.event.enable-feature.finished",
-    shkeptncontext: parsedLabels["shkeptncontext"],
+    shkeptncontext: parsedLabels["context"],
     triggeredid: parsedLabels["triggeredid"],
   });
 };
