@@ -17,6 +17,7 @@ spec:
         properties:
           deploymentstrategy: user_managed
       - name: test
+        triggerAfter: 5s
         properties:
           teststrategy: performance
       #- name: evaluation
