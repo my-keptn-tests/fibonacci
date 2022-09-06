@@ -7,7 +7,7 @@ actions:
       - name: "Launching k6"
         image: "alpine:3.16.2"
         cmd: ["sleep"]
-        args: ["5"]
+        args: ["10"]
       - name: "Run k6 for Fibonacci"
         files:
           - /k6
