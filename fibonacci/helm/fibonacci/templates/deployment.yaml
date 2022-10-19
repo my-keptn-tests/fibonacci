@@ -38,11 +38,13 @@ spec:
               value: "jaeger-collector.jaeger.svc.cluster.local"
             - name: OTEL_EXPORTER_JAEGER_AGENT_PORT
               value: "6832"
+            - name: OTEL_SERVICE_NAME
+              value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
             - name: FIB_SERVICE_URL
               value: "http://fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
-            - name: "FIB_SERVICE_USER"
+            - name: FIB_SERVICE_USER
               value: "my-fib3r-user"
-            - name: "FIB_SERVICE_PASS"
+            - name: FIB_SERVICE_PASS
               value: "my-fib3r-password"
           resources:
             requests:
