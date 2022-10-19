@@ -30,21 +30,17 @@ spec:
           env:
             - name: DT_CUSTOM_PROP
               value: "keptn_project={{ .Values.keptn.project }} keptn_service={{ .Values.keptn.service }} keptn_stage={{ .Values.keptn.stage }} keptn_deployment={{ .Values.keptn.deployment }}"
+            - name: OTEL_TRACE_HOST
+              value: "jaeger-collector.jaeger.svc.cluster.local"
             - name: SERVICE_NAME
               value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
             - name: ENVIRONMENT
               value: "{{ .Values.keptn.stage }}"
-            - name: OTEL_EXPORTER_JAEGER_AGENT_HOST
-              value: "jaeger-collector.jaeger.svc.cluster.local"
-            - name: OTEL_EXPORTER_JAEGER_AGENT_PORT
-              value: 6832
-            - name: OTEL_SERVICE_NAME
-              value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
-            - name: FIB_SERVICE_URL
+            - name: FIB3R_BASE_URL
               value: "http://fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
-            - name: "FIB_SERVICE_USER"
+            - name: "FIB3R_USER"
               value: "my-fib3r-user"
-            - name: "FIB_SERVICE_PASS"
+            - name: "FIB3R_PASS"
               value: "my-fib3r-password"
           resources:
             requests:
@@ -54,7 +50,7 @@ spec:
               cpu: 200m
               memory: 128Mi
         - name: flagd
-          image: ghcr.io/open-feature/flagd:v0.2.4
+          image: ghcr.io/open-feature/flagd:latest
           args: ["start", "--uri", "/etc/flagd/config.json"]
           volumeMounts:
             - name: config-volume
@@ -63,6 +59,3 @@ spec:
         - name: config-volume
           configMap:
             name: feature-flags
-
-
-
