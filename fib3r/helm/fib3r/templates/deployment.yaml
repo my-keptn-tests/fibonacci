@@ -33,7 +33,7 @@ spec:
             - name: OTEL_EXPORTER_JAEGER_AGENT_HOST
               value: "jaeger-collector.jaeger.svc.cluster.local"
             - name: OTEL_EXPORTER_JAEGER_AGENT_PORT
-              value: 6832
+              value: "6832"
             - name: OTEL_SERVICE_NAME
               value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
             - name: "FIB_SERVICE_USER"
