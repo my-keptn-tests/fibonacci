@@ -1,4 +1,4 @@
-image: ghcr.io/beeme1mr/kubecon-demo:latest
+image: ghcr.io/open-feature/playground-app:v0.1.1
 keptn:
   deployment: user_managed
   project: fibonacci
