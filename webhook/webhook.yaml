@@ -4,21 +4,6 @@ metadata:
   name: webhook-configuration
 spec:
   webhooks:
-    - type: sh.keptn.event.release.finished
-      requests:
-        - url: https://hooks.slack.com/services/{{.env.secret_slacksecret_HOOK}}
-          payload: >-
-            {"text":"Release in {{.data.stage}} finished, feature enabled"}
-          headers: []
-          method: POST
-      envFrom:
-        - name: secret_slacksecret_HOOK
-          secretRef:
-            name: slack-secret
-            key: HOOK
-      subscriptionID: 843c65dc-38e1-4a02-b023-a49f394db0e8
-      sendFinished: false
-      sendStarted: false
     - type: sh.keptn.event.enable-feature.triggered
       requests:
         - url: https://api.github.com/repos/my-keptn-tests/fibonacci/dispatches
