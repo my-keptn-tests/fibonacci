@@ -36,3 +36,18 @@ spec:
       subscriptionID: 843c65dc-38e1-4a02-b023-a49f394db0e8
       sendFinished: false
       sendStarted: false
+    - type: sh.keptn.event.notify.triggered
+      requests:
+        - url: https://hooks.slack.com/services/{{.env.secret_slacksecret_HOOK}}
+          payload: >-
+            {"text":"Delivery of {{.data.configurationChange.values.image}} failed :x:","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Delivery of {{.data.configurationChange.values.image}} failed :x:"},"accessory":{"type":"button","text":{"type":"plain_text","text":"Open Jaeger to see traces","emoji":true},"value":"click_me_123","url":"http://jaeger-query.jaeger.34.122.159.72.nip.io/search","action_id":"button-action"}}]}
+          headers: []
+          method: POST
+      envFrom:
+        - name: secret_slacksecret_HOOK
+          secretRef:
+            name: slack-secret
+            key: HOOK
+      subscriptionID: e5841271-5539-4517-8882-965f253e8125
+      sendFinished: true
+      sendStarted: true
