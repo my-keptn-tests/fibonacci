@@ -30,13 +30,15 @@ spec:
           env:
             - name: DT_CUSTOM_PROP
               value: "keptn_project={{ .Values.keptn.project }} keptn_service={{ .Values.keptn.service }} keptn_stage={{ .Values.keptn.stage }} keptn_deployment={{ .Values.keptn.deployment }}"
-            - name: OTEL_TRACE_HOST
-              value: "jaeger-collector.jaeger.svc.cluster.local"
             - name: SERVICE_NAME
               value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
             - name: ENVIRONMENT
               value: "{{ .Values.keptn.stage }}"
-            - name: FIB3R_BASE_URL
+            - name: OTEL_EXPORTER_JAEGER_AGENT_HOST
+              value: "jaeger-collector.jaeger.svc.cluster.local"
+            - name: OTEL_EXPORTER_JAEGER_AGENT_PORT
+              value: "6832"
+            - name: FIB_SERVICE_URL
               value: "http://fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
             - name: "FIB_SERVICE_USER"
               value: "my-fib3r-user"
