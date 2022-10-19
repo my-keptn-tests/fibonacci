@@ -1,4 +1,4 @@
-image: ghcr.io/beeme1mr/playground-app:v0.1.1
+image: ghcr.io/open-feature/playground-fib-service:v0.1.1
 keptn:
   deployment: user_managed
   project: fibonacci
