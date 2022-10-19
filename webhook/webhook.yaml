@@ -21,21 +21,6 @@ spec:
       subscriptionID: 2c214186-3a7e-4333-a44d-fa581110ce54
       sendFinished: false
       sendStarted: true
-    - type: sh.keptn.event.release.finished
-      requests:
-        - url: https://hooks.slack.com/services/{{.env.secret_slacksecret_HOOK}}
-          payload: >-
-            {"text":"Release of **{{.data.service}}** in **{{.data.stage}}** finished with the new feature enabled :white_check_mark:"}
-          headers: []
-          method: POST
-      envFrom:
-        - name: secret_slacksecret_HOOK
-          secretRef:
-            name: slack-secret
-            key: HOOK
-      subscriptionID: 843c65dc-38e1-4a02-b023-a49f394db0e8
-      sendFinished: false
-      sendStarted: false
     - type: sh.keptn.event.notify.triggered
       requests:
         - url: https://hooks.slack.com/services/{{.env.secret_slacksecret_HOOK}}
