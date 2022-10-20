@@ -9,5 +9,5 @@ spec:
     app: fib3r
   ports:
   - name: http
-    port: 30000
+    port: 80
     targetPort: 30000
