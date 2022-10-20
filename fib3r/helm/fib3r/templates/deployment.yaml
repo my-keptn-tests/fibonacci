@@ -20,9 +20,11 @@ spec:
       containers:
         - name: fib3r
           image: "{{ .Values.image }}"
+          args:
+            - flagd
           imagePullPolicy: "Always"
           ports:
-            - containerPort: 30001
+            - containerPort: 30000
           env:
             - name: DT_CUSTOM_PROP
               value: "keptn_project={{ .Values.keptn.project }} keptn_service={{ .Values.keptn.service }} keptn_stage={{ .Values.keptn.stage }} keptn_deployment={{ .Values.keptn.deployment }}"
@@ -31,14 +33,16 @@ spec:
             - name: ENVIRONMENT
               value: "{{ .Values.keptn.stage }}"
             - name: OTEL_EXPORTER_JAEGER_AGENT_HOST
-              value: "jaeger-collector.jaeger.svc.cluster.local"
+              value: "jaeger-agent.jaeger.svc.cluster.local"
             - name: OTEL_EXPORTER_JAEGER_AGENT_PORT
               value: "6832"
             - name: OTEL_SERVICE_NAME
               value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
-            - name: "FIB_SERVICE_USER"
+            - name: FIB_SERVICE_URL
+              value: "http://fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
+            - name: FIB_SERVICE_USER
               value: "my-fib3r-user"
-            - name: "FIB_SERVICE_PASS"
+            - name: FIB_SERVICE_PASS
               value: "my-fib3r-password"
           resources:
             requests:
@@ -57,6 +61,3 @@ spec:
         - name: config-volume
           configMap:
             name: feature-flags
-
-
-
