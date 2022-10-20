@@ -51,13 +51,13 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
-        - name: flagd
-          image: ghcr.io/open-feature/flagd:v0.2.4
-          args: ["start", "--uri", "/etc/flagd/config.json"]
-          volumeMounts:
-            - name: config-volume
-              mountPath: /etc/flagd
-      volumes:
-        - name: config-volume
-          configMap:
-            name: feature-flags
+#        - name: flagd
+#          image: ghcr.io/open-feature/flagd:v0.2.4
+#          args: ["start", "--uri", "/etc/flagd/config.json"]
+#          volumeMounts:
+#            - name: config-volume
+#              mountPath: /etc/flagd
+#      volumes:
+#        - name: config-volume
+#          configMap:
+#            name: feature-flags
