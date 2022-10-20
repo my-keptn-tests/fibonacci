@@ -3,4 +3,4 @@ keptn:
   deployment: user_managed
   project: fibonacci
   service: fibonacci
-replicaCount: 3
+replicaCount: 1
