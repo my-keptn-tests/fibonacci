@@ -45,7 +45,7 @@ spec:
             - name: FIB_SERVICE_USER
               value: "my-fib3r-user"
             - name: FIB_SERVICE_PASS
-              value: "my-fib3r-password"
+              value: "my-fib3r-upps"
           resources:
             requests:
               cpu: 100m
