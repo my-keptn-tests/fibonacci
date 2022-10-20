@@ -1,6 +1,6 @@
-image: ghcr.io/open-feature/playground-fib-service:v0.2.0
-keptn:
-  deployment: user_managed
-  project: fibonacci
-  service: fibonacci
+image: ghcr.io/open-feature/playground-app:v0.2.0
 replicaCount: 1
+keptn:
+  service: "fibonacci"
+  project: "fibonacci"
+  deployment: "user_managed"
