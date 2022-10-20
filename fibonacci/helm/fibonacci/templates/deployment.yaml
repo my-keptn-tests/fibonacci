@@ -40,8 +40,6 @@ spec:
               value: "6832"
             - name: OTEL_SERVICE_NAME
               value: "{{ .Values.keptn.service }}-{{ .Values.keptn.stage }}"
-            - name: FIB_SERVICE_URL
-              value: "http://fib3r.fibonacci-{{ .Values.keptn.stage }}.svc.cluster.local:30001"
             - name: FIB_SERVICE_USER
               value: "my-fib3r-user"
             - name: FIB_SERVICE_PASS
